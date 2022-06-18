@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-narrow">
+                <form class="box" action="" method="POST">
+                    <div class="content">
+                        <h1 class="title has-text-centered-has-text-weight-bold">Add Store</h1>
+                    </div>
+                    {% csrf_token %}
+                    {% include 'core/non_field_errors.html' %}
+                    <div class="field">
+                        <label class="label" for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+                        <div class="control">
+                            {% render_field form.name class="input" %}
+                        </div>
+                        {% include 'core/form_field_errors.html' with errors=form.name.errors %}
+                    </div>
+                    <button class="button is-primary" type="submit">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
