@@ -1,0 +1,8 @@
+# Environments
+.venv
+.env
+.vscode
+
+# Python
+*.py[co]
+__pycache__
