@@ -1,0 +1,6 @@
+{% url 'index' as index %}
+{% if request.path == index %}
+<title>Agora</title>
+{% else %}
+<title>{{ title }} | Agora</title>
+{% endif %}
