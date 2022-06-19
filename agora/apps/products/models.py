@@ -2,6 +2,7 @@ from django.core.validators import MinValueValidator
 from django.db import models
 
 from model_utils.models import TimeStampedModel
+from quantityfield.fields import QuantityField
 from taggit.managers import TaggableManager
 
 from agora.apps.stores.models import Store
@@ -21,8 +22,11 @@ class Product(TimeStampedModel, models.Model):
         max_digits=5,
         decimal_places=2,
         blank=True,
-        default=0.00
+        default=0.00,
+        validators=[MinValueValidator(0)]
     )
+    weight = QuantityField('ounce',
+                           validators=[MinValueValidator(0)])
     store = models.ForeignKey(
         Store,
         on_delete=models.CASCADE,
