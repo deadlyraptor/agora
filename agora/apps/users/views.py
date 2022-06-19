@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django.views.generic import DetailView
 
-# Create your views here.
+from agora.apps.users.models import User
+
+
+class UserDetailView(DetailView):
+    model = User
+    template_name = 'users/user_detail.html'

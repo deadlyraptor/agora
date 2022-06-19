@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-weight-bold">User</h1>
+        <p>{{ request.user.name }}</p>
+    </div>
+</section>
+{% endblock content %}

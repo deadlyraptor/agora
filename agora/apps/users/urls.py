@@ -1,7 +1,7 @@
 from django.urls import path
 
-from agora.apps.core import views
+from agora.apps.users import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('<int:pk>', views.UserDetailView.as_view(), name='user-detail'),
 ]
