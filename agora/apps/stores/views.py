@@ -11,8 +11,8 @@ class StoreListView(ListView):
 
     model = Store
     context_object_name = 'stores'
-    template_name = 'stores/store_list.html'
     paginate_by = 25
+    template_name = 'stores/store_list.html'
     extra_context = {'title': 'Stores'}
 
     def get_queryset(self):

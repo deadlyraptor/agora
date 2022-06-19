@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <div class="content">
+            <h1 class="title has-text-weight-bold">{{ title }}</h1>
+            <table class="table is-striped is-hoverable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Store</th>
+                        <th class="has-text-centered">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.store }}</td>
+                        <td class="has-text-centered">
+                            <a href="#">
+                                <span class="icon-text">
+                                    <span class="icon">
+                                        <i class="fas fa-edit" aria-hidden="true" title="Update product"></i>
+                                        <span class="is-sr-only">Update product</span>
+                                    </span>
+                                </span>
+                            </a>
+                            <a href="#">
+                                <span class="icon-text">
+                                    <span class="icon has-text-danger">
+                                        <i class="fas fa-trash" aria-hidden="true" title="Delete product"></i>
+                                        <span class="is-sr-only">Delete product</span>
+                                    </span>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

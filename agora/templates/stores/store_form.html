@@ -12,13 +12,7 @@
                     </div>
                     {% csrf_token %}
                     {% include 'core/non_field_errors.html' %}
-                    <div class="field">
-                        <label class="label" for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
-                        <div class="control">
-                            {% render_field form.name class="input" %}
-                        </div>
-                        {% include 'core/form_field_errors.html' with errors=form.name.errors %}
-                    </div>
+                    {% include 'core/fields/input_field.html' with field=form.name|add_class:"input" %}
                     <div class="buttons">
                         {% if object %}
                         <button class="button is-primary" type="submit">{{ button }}</button>
