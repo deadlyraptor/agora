@@ -17,9 +17,17 @@
                     <tr>
                         <td>{{ store.name }}</td>
                         <td class="has-text-centered">
-                            <a href="{% url 'store-delete' store.pk %}">
+                            <a href="{% url 'store-update' store.pk %}">
                                 <span class="icon-text">
                                     <span class="icon">
+                                        <i class="fas fa-edit" aria-hidden="true" title="Update store"></i>
+                                        <span class="is-sr-only">Update store</span>
+                                    </span>
+                                </span>
+                            </a>
+                            <a href="{% url 'store-delete' store.pk %}">
+                                <span class="icon-text">
+                                    <span class="icon has-text-danger">
                                         <i class="fas fa-trash" aria-hidden="true" title="Delete store"></i>
                                         <span class="is-sr-only">Delete store</span>
                                     </span>

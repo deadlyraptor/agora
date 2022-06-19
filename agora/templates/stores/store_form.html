@@ -8,7 +8,7 @@
             <div class="column is-narrow">
                 <form class="box" action="" method="POST">
                     <div class="content">
-                        <h1 class="title has-text-centered has-text-weight-bold">Add Store</h1>
+                        <h1 class="title has-text-centered has-text-weight-bold">{{ title }}</h1>
                     </div>
                     {% csrf_token %}
                     {% include 'core/non_field_errors.html' %}
@@ -20,8 +20,13 @@
                         {% include 'core/form_field_errors.html' with errors=form.name.errors %}
                     </div>
                     <div class="buttons">
-                        <button class="button is-primary" type="submit">Create</button>
+                        {% if object %}
+                        <button class="button is-primary" type="submit">{{ button }}</button>
                         <a class="button" href="{% url 'index' %}">Cancel</a>
+                        {% else %}
+                        <button class="button is-primary" type="submit">{{ button }}</button>
+                        <a class="button" href="{% url 'store-list' %}">Cancel</a>
+                        {% endif %}
                     </div>
                 </form>
             </div>

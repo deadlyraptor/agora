@@ -9,6 +9,9 @@ urlpatterns = [
     path('new/',
          views.StoreCreateView.as_view(),
          name='store-create'),
+    path('<int:pk>/edit',
+         views.StoreUpdateView.as_view(),
+         name='store-update'),
     path('<int:pk>/delete',
          views.StoreDeleteView.as_view(),
          name='store-delete')
