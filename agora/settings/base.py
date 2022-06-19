@@ -27,11 +27,13 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'django_extensions',
+    'taggit',
     'widget_tweaks',
 ]
 
 LOCAL_APPS = [
     'agora.apps.core',
+    'agora.apps.products',
     'agora.apps.stores',
     'agora.apps.users',
 ]
@@ -130,3 +132,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Taggit
+TAGGIT_CASE_INSENSITIVE = True

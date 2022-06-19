@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('agora.apps.core.urls')),
     path('store/', include('agora.apps.stores.urls')),
+    path('product/', include('agora.apps.products.urls')),
     path('account/', include('agora.apps.users.urls')),
 ]
 
