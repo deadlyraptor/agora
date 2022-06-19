@@ -1,0 +1,12 @@
+{% if messages %}
+{% for message in messages %}
+<section class="section">
+    <div class="container">
+        <div class="notification is-{{ message.tags }}">
+            <button class="delete"></button>
+            {{ message }}
+        </div>
+    </div>
+</section>
+{% endfor %}
+{% endif %}

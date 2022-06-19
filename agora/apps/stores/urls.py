@@ -9,4 +9,7 @@ urlpatterns = [
     path('new/',
          views.StoreCreateView.as_view(),
          name='store-create'),
+    path('<int:pk>/delete',
+         views.StoreDeleteView.as_view(),
+         name='store-delete')
 ]

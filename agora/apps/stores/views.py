@@ -1,5 +1,6 @@
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, DeleteView, ListView
 
 from agora.apps.stores.forms import StoreForm
 from agora.apps.stores.models import Store
@@ -18,10 +19,21 @@ class StoreListView(ListView):
         return Store.objects.all()
 
 
-class StoreCreateView(CreateView):
+class StoreCreateView(SuccessMessageMixin, CreateView):
     """A view for creating new stores."""
 
     form_class = StoreForm
     success_url = reverse_lazy('store-create')
+    success_message = '%(name)s successfully created.'
     template_name = 'stores/store_form.html'
     extra_context = {'title': 'Create Store'}
+
+
+class StoreDeleteView(SuccessMessageMixin, DeleteView):
+    """A view for deleting stores."""
+
+    model = Store
+    success_url = reverse_lazy('store-list')
+    success_message = 'Store successfully deleted.'
+    template_name = 'stores/store_confirm_delete.html'
+    extra_context = {'title': 'Delete Store'}

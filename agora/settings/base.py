@@ -3,6 +3,8 @@
 import os
 from pathlib import Path
 
+from django.contrib.messages import constants as messages
+
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -27,6 +29,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'django_extensions',
+    'fontawesomefree',
     'taggit',
     'widget_tweaks',
 ]
@@ -132,6 +135,11 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
 
 # Taggit
 TAGGIT_CASE_INSENSITIVE = True

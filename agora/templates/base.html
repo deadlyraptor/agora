@@ -8,13 +8,17 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'fontawesomefree/css/all.min.css' %}">
+
     {% include 'core/title.html' %}
 </head>
 
 <body>
     {% include 'core/nav.html' %}
+    {% include 'core/messages.html' %}
     {% block content %}
     {% endblock content %}
+    <script type="text/javascript" src="{% static 'js/agora.js' %}"></script>
 </body>
 
 </html>
