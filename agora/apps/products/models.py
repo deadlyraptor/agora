@@ -41,7 +41,7 @@ class Product(TimeStampedModel, models.Model):
         ordering = ['name']
 
     def __str__(self):
-        return f'{self.name} ({self.brand.store})'
+        return f'{self.name} ({self.brand})'
 
     @property
     def price_per_oz(self):

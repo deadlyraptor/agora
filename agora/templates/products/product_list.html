@@ -5,28 +5,84 @@
     <div class="container">
         <div class="content">
             <h1 class="title has-text-weight-bold">{{ title }}</h1>
-            <table class="table is-striped is-hoverable">
+            <table class="table is-striped is-hoverable" id="sortable-table">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Promo</th>
-                        <th>Weight</th>
-                        <th>Price per oz</th>
-                        <th>Last Purchased</th>
-                        <th>Brand</th>
-                        <th>Store</th>
-                        <th class="has-text-centered">Actions</th>
+                        <th>
+                            <span class="icon-text is-clickable">
+                                <span>Name</span>
+                                <span class="icon">
+                                    <i class="fas fa-sort"></i>
+                                </span>
+                            </span>
+                        </th>
+                        <th class="has-text-centered">
+                            <span class="icon-text is-clickable">
+                                <span>Price</span>
+                                <span class="icon">
+                                    <i class="fas fa-sort"></i>
+                                </span>
+                            </span>
+                        </th>
+                        <th class="has-text-centered">
+                            <span class="icon-text is-clickable">
+                                <span>Promo</span>
+                                <span class="icon">
+                                    <i class="fas fa-sort"></i>
+                                </span>
+                            </span>
+                        </th>
+                        <th class="has-text-centered">
+                            <span class="icon-text is-clickable">
+                                <span>Weight</span>
+                                <span class="icon">
+                                    <i class="fas fa-sort"></i>
+                                </span>
+                            </span>
+                        </th>
+                        <th class="has-text-centered">
+                            <span class="icon-text is-clickable">
+                                <span>Price/oz</span>
+                                <span class="icon">
+                                    <i class="fas fa-sort"></i>
+                                </span>
+                            </span>
+                        </th>
+                        <th>
+                            <span class="icon-text is-clickable">
+                                <span>Purchased</span>
+                                <span class="icon">
+                                    <i class="fas fa-sort"></i>
+                                </span>
+                            </span>
+                        </th>
+                        <th>
+                            <span class="icon-text is-clickable">
+                                <span>Brand</span>
+                                <span class="icon">
+                                    <i class="fas fa-sort"></i>
+                                </span>
+                            </span>
+                        </th>
+                        <th>
+                            <span class="icon-text is-clickable">
+                                <span>Store</span>
+                                <span class="icon">
+                                    <i class="fas fa-sort"></i>
+                                </span>
+                            </span>
+                        </th>
+                        <th class="has-text-centered" id="actions">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for product in products %}
                     <tr>
                         <td>{{ product.name }}</td>
-                        <td>{{ product.price }}</td>
-                        <td>{{ product.promo_price }}</td>
-                        <td>{{ product.weight.magnitude }} oz.</td>
-                        <td>{{ product.price_per_oz }}</td>
+                        <td class="has-text-right">${{ product.price }}</td>
+                        <td class="has-text-right">${{ product.promo_price }}</td>
+                        <td class="has-text-right">{{ product.weight.magnitude }} oz.</td>
+                        <td class="has-text-right">${{ product.price_per_oz }}</td>
                         <td>{{ product.modified|date:"n/j" }}</td>
                         <td>{{ product.brand.name }}</td>
                         <td>{{ product.brand.store }}</td>

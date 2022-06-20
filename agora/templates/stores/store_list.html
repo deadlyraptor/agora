@@ -5,11 +5,18 @@
     <div class="container">
         <div class="content">
             <h1 class="title has-text-weight-bold">{{ title }}</h1>
-            <table class="table is-striped is-hoverable">
+            <table class="table is-striped is-hoverable" id="sortable-table">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th class="has-text-centered">Actions</th>
+                        <th>
+                            <span class="icon-text is-clickable">
+                                <span>Name</span>
+                                <span class="icon">
+                                    <i class="fas fa-sort"></i>
+                                </span>
+                            </span>
+                        </th>
+                        <th class="has-text-centered" id="actions">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
