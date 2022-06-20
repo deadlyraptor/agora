@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <div class="content">
+            <h1 class="title has-text-weight-bold">{{ title }}</h1>
+            <table class="table" id="sortable-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Products</th>
+                        <th class="has-text-centered">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tag in tags %}
+                    <tr>
+                        <td>{{ tag.name|capfirst }}</td>
+                        <td>{{ tag.taggit_taggeditem_items.count }}</td>
+                        <td class="has-text-centered">
+                            <a href="{% url 'tag-delete' tag.slug %}">
+                                <span class="icon-text">
+                                    <span class="icon has-text-danger">
+                                        <i class="fas fa-trash" aria-hidden="true" title="Delete tag"></i>
+                                        <span class="is-sr-only">Delete tag</span>
+                                    </span>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% if is_paginated %}
+            <nav class="pagination" role="pagination" aria-label="pagination">
+                {% if page_obj.has_previous %}
+                <a class="pagination-previous" href="?page=1">&laquo; first</a>
+                <a class="pagination-previous" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+
+                <ul class="pagination-list">
+                    {% for page_number in paginator.page_range %}
+                    <li>
+                        {% if page_obj.number == page_number %}
+                        <a class="pagination-link is-current" href="?page={{ page_number }}"
+                            aria-label="Page {{ page_number }}" aria-current="page">{{ page_number }}</a>
+                        {% else %}
+                        <a class="pagination-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                {% if page_obj.has_next %}
+                <a class="pagination-next" href="?page={{ page_obj.next_page_number }}">Next page</a>
+                <a class="pagination-next" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

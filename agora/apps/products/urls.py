@@ -34,5 +34,12 @@ urlpatterns = [
          name='brand-update'),
     path('<int:pk>/delete/',
          views.BrandDeleteView.as_view(),
-         name='brand-delete')
+         name='brand-delete'),
+    # Tags
+    path('tags/',
+         views.TagListView.as_view(),
+         name='tag-list'),
+    path('tags/<slug:slug>/delete/',
+         views.TagDeleteView.as_view(),
+         name='tag-delete'),
 ]

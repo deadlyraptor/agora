@@ -1,9 +1,9 @@
-from ast import Delete
-from audioop import reverse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView,
                                   ListView, UpdateView)
+
+from taggit.models import Tag
 
 from agora.apps.products.forms import ProductForm, BrandForm
 from agora.apps.products.models import Product, Brand
@@ -88,7 +88,7 @@ class BrandCreateView(SuccessMessageMixin, CreateView):
     model = Brand
     form_class = BrandForm
     success_url = reverse_lazy('brand-create')
-    success_message = '%(name)s added to %(store)s successfully.'
+    success_message = '%(name)s successfully added to %(store)s.'
     template_name = 'products/brand_form.html'
     extra_context = {'title': 'Create Brand', 'button': 'Create'}
 
@@ -124,3 +124,26 @@ class BrandDeleteView(SuccessMessageMixin, DeleteView):
     success_message = 'Brand successfully deleted.'
     template_name = 'products/brand_confirm_delete.html'
     extra_context = {'title': 'Delete Brand'}
+
+
+class TagListView(ListView):
+    """A view for listing all tags."""
+
+    model = Tag
+    context_object_name = 'tags'
+    paginate_by = 15
+    template_name = 'products/tag_list.html'
+    extra_context = {'title': 'Tags'}
+
+    def get_queryset(self):
+        return Tag.objects.all().order_by('name')
+
+
+class TagDeleteView(SuccessMessageMixin, DeleteView):
+    """A view for deleting tags."""
+
+    model = Tag
+    success_url = reverse_lazy('tag-list')
+    success_message = 'Tag succesfully deleted.'
+    template_name = 'products/tag_confirm_delete.html'
+    extra_context = {'title': 'Delete Tag'}
