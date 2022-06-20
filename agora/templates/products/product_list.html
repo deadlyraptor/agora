@@ -78,7 +78,9 @@
                 <tbody>
                     {% for product in products %}
                     <tr>
-                        <td>{{ product.name }}</td>
+                        <td>
+                            <a href="{% url 'product-detail' product.pk %}">{{ product.name }}</a>
+                        </td>
                         <td class="has-text-right">${{ product.price }}</td>
                         <td class="has-text-right">${{ product.promo_price }}</td>
                         <td class="has-text-right">{{ product.weight.magnitude }} oz.</td>

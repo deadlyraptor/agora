@@ -35,6 +35,18 @@ class ProductCreateView(SuccessMessageMixin, CreateView):
     extra_context = {'title': 'Create Product', 'button': 'Create'}
 
 
+class ProductDetailView(DetailView):
+    """A view for inspecting a specific product."""
+
+    model = Product
+    context_object_name = 'product'
+    template_name = 'products/product_detail.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs.update({'title': self.object.name})
+        return super().get_context_data(**kwargs)
+
+
 class ProductUpdateView(SuccessMessageMixin, UpdateView):
     """A view for updating Products."""
 
