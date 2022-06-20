@@ -40,3 +40,20 @@ class Product(TimeStampedModel, models.Model):
 
     def __str__(self):
         return f'{self.name} ({self.store})'
+
+
+class ProductBrand(TimeStampedModel, models.Model):
+    """A model for product brands."""
+
+    name = models.CharField(max_length=50)
+    store = models.ForeignKey(
+        Store,
+        on_delete=models.CASCADE,
+        related_name='brands'
+    )
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return f'{self.name} ({self.store})'

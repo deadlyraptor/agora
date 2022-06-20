@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-narrow">
+                <form class="box" action="{% url 'product-brand-create' %}" method="POST">
+                    <div class="content">
+                        <h1 class="title has-text-centered has-text-weight-bold">{{ title }}</h1>
+                    </div>
+                    {% csrf_token %}
+                    {% include 'core/non_field_errors.html' %}
+                    {% include 'core/fields/input_field.html' with field=form.name|add_class:"input"|attr:"placeholder:Brand name" %}
+                    {% include 'core/fields/select_field.html' with field=form.store %}
+                    <div class="buttons">
+                        <button class="button is-primary" type="submit">Create brand</button>
+                        <a href="{% url 'index' %}" class="button">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

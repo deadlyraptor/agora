@@ -9,4 +9,7 @@ urlpatterns = [
     path('new/',
          views.ProductCreateView.as_view(),
          name='product-create'),
+    path('brand/new/',
+         views.ProductBrandCreateView.as_view(),
+         name='product-brand-create'),
 ]
