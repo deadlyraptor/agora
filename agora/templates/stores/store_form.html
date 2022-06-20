@@ -16,10 +16,10 @@
                     <div class="buttons">
                         {% if object %}
                         <button class="button is-primary" type="submit">{{ button }}</button>
-                        <a class="button" href="{% url 'index' %}">Cancel</a>
+                        <a class="button" href="{% url 'store-list' %}">Cancel</a>
                         {% else %}
                         <button class="button is-primary" type="submit">{{ button }}</button>
-                        <a class="button" href="{% url 'store-list' %}">Cancel</a>
+                        <a class="button" href="{% url 'index' %}">Cancel</a>
                         {% endif %}
                     </div>
                 </form>

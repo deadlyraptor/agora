@@ -30,7 +30,7 @@ class Product(TimeStampedModel, models.Model):
     weight = QuantityField('ounce',
                            validators=[MinValueValidator(0)])
     brand = models.ForeignKey(
-        'ProductBrand',
+        'Brand',
         on_delete=models.CASCADE,
         related_name='products'
     )
@@ -51,7 +51,7 @@ class Product(TimeStampedModel, models.Model):
             return (self.promo_price / Decimal(self.weight.magnitude)).quantize(Decimal('1.00'))
 
 
-class ProductBrand(TimeStampedModel, models.Model):
+class Brand(TimeStampedModel, models.Model):
     """A model for product brands."""
 
     name = models.CharField(max_length=50)

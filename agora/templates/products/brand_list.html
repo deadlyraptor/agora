@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <div class="content">
+            <h1 class="title has-text-weight-bold">{{ title }}</h1>
+            <table class="table is-striped is-hoverable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Store</th>
+                        <th class="has-text-centered">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for brand in brands %}
+                    <tr>
+                        <td>{{ brand.name }}</td>
+                        <td>{{ brand.store }}</td>
+                        <td class="has-text-centered">
+                            <a href="#">
+                                <span class="icon-text">
+                                    <span class="icon">
+                                        <i class="fas fa-edit" aria-hidden="true" title="Update brand"></i>
+                                        <span class="is-sr-only">Update brand</span>
+                                    </span>
+                                </span>
+                            </a>
+                            <a href="#">
+                                <span class="icon-text">
+                                    <span class="icon has-text-danger">
+                                        <i class="fas fa-trash" aria-hidden="true" title="Delete brand"></i>
+                                        <span class="is-sr-only">Delete brand</span>
+                                    </span>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

@@ -2,8 +2,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
-from agora.apps.products.forms import ProductForm, ProductBrandForm
-from agora.apps.products.models import Product, ProductBrand
+from agora.apps.products.forms import ProductForm, BrandForm
+from agora.apps.products.models import Product, Brand
 
 
 class ProductListView(ListView):
@@ -51,12 +51,25 @@ class ProductDeleteView(SuccessMessageMixin, DeleteView):
     extra_context = {'title': 'Delete Product'}
 
 
-class ProductBrandCreateView(SuccessMessageMixin, CreateView):
+class BrandCreateView(SuccessMessageMixin, CreateView):
     """A view for creating new product brands."""
 
-    model = ProductBrand
-    form_class = ProductBrandForm
-    success_url = reverse_lazy('product-brand-create')
+    model = Brand
+    form_class = BrandForm
+    success_url = reverse_lazy('brand-create')
     success_message = '%(name)s added to %(store)s successfully.'
-    template_name = 'products/product_brand_form.html'
+    template_name = 'products/brand_form.html'
     extra_context = {'title': 'Create Brand'}
+
+
+class BrandListView(ListView):
+    """A view for listing all brands."""
+
+    model = Brand
+    context_object_name = 'brands'
+    paginate_by = 25
+    template_name = 'brand_list.html'
+    extra_context = {'title': 'Brands'}
+
+    def get_queryset(self):
+        return Brand.objects.all()

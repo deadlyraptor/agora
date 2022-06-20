@@ -1,6 +1,6 @@
 from django import forms
 
-from agora.apps.products.models import Product, ProductBrand
+from agora.apps.products.models import Product, Brand
 
 
 class ProductForm(forms.ModelForm):
@@ -11,9 +11,9 @@ class ProductForm(forms.ModelForm):
         exclude = ('created', 'modified')
 
 
-class ProductBrandForm(forms.ModelForm):
+class BrandForm(forms.ModelForm):
     """A form for creating and updating product brands."""
 
     class Meta:
-        model = ProductBrand
+        model = Brand
         exclude = ('exclude', 'modified')

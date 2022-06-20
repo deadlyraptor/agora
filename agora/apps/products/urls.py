@@ -3,6 +3,7 @@ from django.urls import path
 from agora.apps.products import views
 
 urlpatterns = [
+    # Products
     path('products/',
          views.ProductListView.as_view(),
          name='product-list'),
@@ -15,7 +16,11 @@ urlpatterns = [
     path('<int:pk>/delete/',
          views.ProductDeleteView.as_view(),
          name='product-delete'),
+    # Brands
+    path('brands/',
+         views.BrandListView.as_view(),
+         name='brand-list'),
     path('brand/new/',
-         views.ProductBrandCreateView.as_view(),
-         name='product-brand-create'),
+         views.BrandCreateView.as_view(),
+         name='brand-create'),
 ]
