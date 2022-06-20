@@ -4,7 +4,7 @@ from agora.apps.products import views
 
 urlpatterns = [
     # Products
-    path('products/',
+    path('',
          views.ProductListView.as_view(),
          name='product-list'),
     path('new/',
@@ -20,7 +20,7 @@ urlpatterns = [
     path('brands/',
          views.BrandListView.as_view(),
          name='brand-list'),
-    path('brand/new/',
+    path('brands/new/',
          views.BrandCreateView.as_view(),
          name='brand-create'),
     path('<int:pk>/edit',

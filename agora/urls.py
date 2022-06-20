@@ -7,8 +7,8 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('agora.apps.core.urls')),
-    path('store/', include('agora.apps.stores.urls')),
-    path('product/', include('agora.apps.products.urls')),
+    path('stores/', include('agora.apps.stores.urls')),
+    path('products/', include('agora.apps.products.urls')),
     path('account/', include('agora.apps.users.urls')),
 ]
 

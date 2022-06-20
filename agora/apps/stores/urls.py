@@ -3,7 +3,7 @@ from django.urls import path
 from agora.apps.stores import views
 
 urlpatterns = [
-    path('stores/',
+    path('',
          views.StoreListView.as_view(),
          name='store-list'),
     path('new/',
