@@ -12,7 +12,9 @@
                             <h2 class="is-size-4">Brands</h2>
                             <ul>
                                 {% for brand in store.brands.all %}
-                                <li>{{ brand }}</li>
+                                <li>
+                                    <a href="{% url 'brand-detail' brand.pk %}">{{ brand }}</a>
+                                </li>
                                 {% endfor %}
                             </ul>
                         </div>

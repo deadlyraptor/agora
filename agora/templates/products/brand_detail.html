@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-one-third">
+                <div class="content">
+                    <div class="card">
+                        <div class="card-content">
+                            <h1 class="title">{{ brand.name }}</h1>
+                            <h2 class="subtitle">{{ brand.store }}</h2>
+                            <h2 class="is-size-4">Products</h2>
+                            <ul>
+                                {% for product in brand.products.all %}
+                                <li>{{ product }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-footer-item">
+                                <a href="{% url 'brand-update' brand.pk %}">Update</a>
+                            </div>
+                            <div class="card-footer-item">
+                                <a href="{% url 'brand-delete' brand.pk %}">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

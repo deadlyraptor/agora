@@ -31,7 +31,7 @@ class StoreCreateView(SuccessMessageMixin, CreateView):
 
 
 class StoreDetailView(DetailView):
-    """A view for rendering specific store details."""
+    """A view for inspecting a specific store."""
 
     model = Store
     context_object_name = 'store'

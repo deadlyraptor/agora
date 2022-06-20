@@ -2,7 +2,8 @@ from ast import Delete
 from audioop import reverse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from django.views.generic import (CreateView, DeleteView, DetailView,
+                                  ListView, UpdateView)
 
 from agora.apps.products.forms import ProductForm, BrandForm
 from agora.apps.products.models import Product, Brand
@@ -78,6 +79,18 @@ class BrandCreateView(SuccessMessageMixin, CreateView):
     success_message = '%(name)s added to %(store)s successfully.'
     template_name = 'products/brand_form.html'
     extra_context = {'title': 'Create Brand', 'button': 'Create'}
+
+
+class BrandDetailView(DetailView):
+    """A view for inspecting a specific brand."""
+
+    model = Brand
+    context_object_name = 'brand'
+    template_name = 'products/brand_detail.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs.update({'title': self.object.name})
+        return super().get_context_data(**kwargs)
 
 
 class BrandUpdateView(SuccessMessageMixin, UpdateView):
