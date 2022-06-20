@@ -7,6 +7,7 @@ class Store(TimeStampedModel, models.Model):
     """A model for grocery stores."""
 
     name = models.CharField(max_length=150)
+    website = models.URLField()
 
     class Meta:
         ordering = ['name']

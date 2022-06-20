@@ -13,6 +13,7 @@
                     {% csrf_token %}
                     {% include 'core/non_field_errors.html' %}
                     {% include 'core/fields/input_field.html' with field=form.name|add_class:"input" %}
+                    {% include 'core/fields/input_field.html' with field=form.website|add_class:"input" %}
                     <div class="buttons">
                         {% if object %}
                         <button class="button is-primary" type="submit">{{ button }}</button>
