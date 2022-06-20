@@ -1,6 +1,7 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from django.views.generic import (CreateView, DeleteView, DetailView,
+                                  ListView, UpdateView)
 
 from agora.apps.stores.forms import StoreForm
 from agora.apps.stores.models import Store
@@ -27,6 +28,18 @@ class StoreCreateView(SuccessMessageMixin, CreateView):
     success_message = '%(name)s successfully created.'
     template_name = 'stores/store_form.html'
     extra_context = {'title': 'Create Store', 'button': 'Create'}
+
+
+class StoreDetailView(DetailView):
+    """A view for rendering specific store details."""
+
+    model = Store
+    context_object_name = 'store'
+    template_name = 'stores/store_detail.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs.update({'title': self.object.name})
+        return super().get_context_data(**kwargs)
 
 
 class StoreUpdateView(SuccessMessageMixin, UpdateView):

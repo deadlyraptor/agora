@@ -40,8 +40,11 @@ class Product(TimeStampedModel, models.Model):
     class Meta:
         ordering = ['name']
 
-    def __str__(self):
+    def __repr__(self):
         return f'{self.name} ({self.brand})'
+
+    def __str__(self):
+        return f'{self.name}'
 
     @property
     def price_per_oz(self):
@@ -64,5 +67,8 @@ class Brand(TimeStampedModel, models.Model):
     class Meta:
         ordering = ['name']
 
-    def __str__(self):
+    def __repr__(self):
         return f'{self.name} ({self.store})'
+
+    def __str__(self):
+        return f'{self.name}'

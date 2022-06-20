@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-one-third">
+                <div class="content">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">
+                                {{ store.name }}
+                            </p>
+                        </header>
+                        <div class="card-content">
+                            <h2 class="is-size-4">Brands</h2>
+                            <ul>
+                                {% for brand in store.brands.all %}
+                                <li>{{ brand }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <footer class="card-footer">
+                            <a href="{{ store.website }}" class="card-footer-item">Website</a>
+                            <a href="#" class="card-footer-item">Location</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

@@ -22,7 +22,11 @@
                 <tbody>
                     {% for store in stores %}
                     <tr>
-                        <td>{{ store.name }}</td>
+                        <td>
+                            <a href="{% url 'store-detail' store.pk %}">
+                                {{ store.name }}
+                            </a>
+                        </td>
                         <td class="has-text-centered">
                             <a href="{% url 'store-update' store.pk %}">
                                 <span class="icon-text">
