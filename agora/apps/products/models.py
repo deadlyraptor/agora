@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.core.validators import MinValueValidator
 from django.db import models
 
@@ -39,7 +41,14 @@ class Product(TimeStampedModel, models.Model):
         ordering = ['name']
 
     def __str__(self):
-        return f'{self.name} ({self.store})'
+        return f'{self.name} ({self.brand.store})'
+
+    @property
+    def price_per_oz(self):
+        if not self.promo_price:
+            return (self.price / Decimal(self.weight.magnitude)).quantize(Decimal('1.00'))
+        else:
+            return (self.promo_price / Decimal(self.weight.magnitude)).quantize(Decimal('1.00'))
 
 
 class ProductBrand(TimeStampedModel, models.Model):

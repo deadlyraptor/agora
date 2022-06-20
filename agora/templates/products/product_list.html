@@ -10,6 +10,10 @@
                     <tr>
                         <th>Name</th>
                         <th>Price</th>
+                        <th>Promo</th>
+                        <th>Weight</th>
+                        <th>Price per oz</th>
+                        <th>Last Purchased</th>
                         <th>Brand</th>
                         <th>Store</th>
                         <th class="has-text-centered">Actions</th>
@@ -20,6 +24,10 @@
                     <tr>
                         <td>{{ product.name }}</td>
                         <td>{{ product.price }}</td>
+                        <td>{{ product.promo_price }}</td>
+                        <td>{{ product.weight.magnitude }} oz.</td>
+                        <td>{{ product.price_per_oz }}</td>
+                        <td>{{ product.modified|date:"n/j" }}</td>
                         <td>{{ product.brand.name }}</td>
                         <td>{{ product.brand.store }}</td>
                         <td class="has-text-centered">
