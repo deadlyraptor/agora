@@ -7,12 +7,8 @@
             <div class="column is-one-third">
                 <div class="content">
                     <div class="card">
-                        <header class="card-header">
-                            <p class="card-header-title">
-                                {{ store.name }}
-                            </p>
-                        </header>
                         <div class="card-content">
+                            <h1 class="title has-text-weight-bold">{{ store.name }}</h1>
                             <h2 class="is-size-4">Brands</h2>
                             <ul>
                                 {% for brand in store.brands.all %}
@@ -22,7 +18,7 @@
                         </div>
                         <footer class="card-footer">
                             <a href="{{ store.website }}" class="card-footer-item">Website</a>
-                            <a href="#" class="card-footer-item">Location</a>
+                            <a href="{{ store.directions }}" class="card-footer-item">Directions</a>
                         </footer>
                     </div>
                 </div>

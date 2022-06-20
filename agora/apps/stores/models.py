@@ -8,6 +8,7 @@ class Store(TimeStampedModel, models.Model):
 
     name = models.CharField(max_length=150)
     website = models.URLField()
+    directions = models.URLField()
 
     class Meta:
         ordering = ['name']
