@@ -10,7 +10,7 @@
                     <tr>
                         <th>Name</th>
                         <th>Price</th>
-                        <td>Brand</td>
+                        <th>Brand</th>
                         <th>Store</th>
                         <th class="has-text-centered">Actions</th>
                     </tr>
@@ -20,7 +20,7 @@
                     <tr>
                         <td>{{ product.name }}</td>
                         <td>{{ product.price }}</td>
-                        <td>{{ product.brand }}</td>
+                        <td>{{ product.brand.name }}</td>
                         <td>{{ product.brand.store }}</td>
                         <td class="has-text-centered">
                             <a href="{% url 'product-update' product.pk %}">
@@ -31,7 +31,7 @@
                                     </span>
                                 </span>
                             </a>
-                            <a href="#">
+                            <a href="{% url 'product-delete' product.pk %}">
                                 <span class="icon-text">
                                     <span class="icon has-text-danger">
                                         <i class="fas fa-trash" aria-hidden="true" title="Delete product"></i>

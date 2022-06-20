@@ -1,6 +1,6 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, UpdateView
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from agora.apps.products.forms import ProductForm, ProductBrandForm
 from agora.apps.products.models import Product, ProductBrand
@@ -25,7 +25,7 @@ class ProductCreateView(SuccessMessageMixin, CreateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('product-create')
-    success_message = '%(name)s added to %(store)s successfully.'
+    success_message = '%(name)s (%(brand)s) successfully created.'
     template_name = 'products/product_form.html'
     extra_context = {'title': 'Create Product', 'button': 'Create'}
 
@@ -39,6 +39,16 @@ class ProductUpdateView(SuccessMessageMixin, UpdateView):
     success_message = '%(name)s successfully updated.'
     template_name = 'products/product_form.html'
     extra_context = {'title': 'Update Product', 'button': 'Update'}
+
+
+class ProductDeleteView(SuccessMessageMixin, DeleteView):
+    """A view for deleting Products."""
+
+    model = Product
+    success_url = reverse_lazy('product-list')
+    success_message = 'Product successfully deleted.'
+    template_name = 'products/product_confirm_delete.html'
+    extra_context = {'title': 'Delete Product'}
 
 
 class ProductBrandCreateView(SuccessMessageMixin, CreateView):
