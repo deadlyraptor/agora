@@ -7,7 +7,8 @@ ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-INSTALLED_APPS += ['debug_toolbar']  # noqa
+INSTALLED_APPS = (['whitenoise.runserver_nostatic',
+                  'debug_toolbar'] + INSTALLED_APPS)
 
 MIDDLEWARE += [  # noqa
     'debug_toolbar.middleware.DebugToolbarMiddleware'
