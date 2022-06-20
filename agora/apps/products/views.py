@@ -1,9 +1,12 @@
+from audioop import reverse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from agora.apps.products.forms import ProductForm, BrandForm
 from agora.apps.products.models import Product, Brand
+
+# Products
 
 
 class ProductListView(ListView):
@@ -51,17 +54,7 @@ class ProductDeleteView(SuccessMessageMixin, DeleteView):
     extra_context = {'title': 'Delete Product'}
 
 
-class BrandCreateView(SuccessMessageMixin, CreateView):
-    """A view for creating new product brands."""
-
-    model = Brand
-    form_class = BrandForm
-    success_url = reverse_lazy('brand-create')
-    success_message = '%(name)s added to %(store)s successfully.'
-    template_name = 'products/brand_form.html'
-    extra_context = {'title': 'Create Brand'}
-
-
+# Brands
 class BrandListView(ListView):
     """A view for listing all brands."""
 
@@ -73,3 +66,25 @@ class BrandListView(ListView):
 
     def get_queryset(self):
         return Brand.objects.all()
+
+
+class BrandCreateView(SuccessMessageMixin, CreateView):
+    """A view for creating new brands."""
+
+    model = Brand
+    form_class = BrandForm
+    success_url = reverse_lazy('brand-create')
+    success_message = '%(name)s added to %(store)s successfully.'
+    template_name = 'products/brand_form.html'
+    extra_context = {'title': 'Create Brand', 'button': 'Create'}
+
+
+class BrandUpdateView(SuccessMessageMixin, UpdateView):
+    """A view for updatinng brands."""
+
+    model = Brand
+    form_class = BrandForm
+    success_url = reverse_lazy('brand-list')
+    success_message = '%(name)s successfully updated.'
+    template_name = 'products/brand_form.html'
+    extra_context = {'title': 'Update Brand', 'button': 'Update'}

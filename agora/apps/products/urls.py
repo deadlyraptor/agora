@@ -23,4 +23,7 @@ urlpatterns = [
     path('brand/new/',
          views.BrandCreateView.as_view(),
          name='brand-create'),
+    path('<int:pk>/edit',
+         views.BrandUpdateView.as_view(),
+         name='brand-update'),
 ]

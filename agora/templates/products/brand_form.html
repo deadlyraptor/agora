@@ -6,7 +6,7 @@
     <div class="container">
         <div class="columns is-centered">
             <div class="column is-narrow">
-                <form class="box" action="{% url 'brand-create' %}" method="POST">
+                <form class="box" action="" method="POST">
                     <div class="content">
                         <h1 class="title has-text-centered has-text-weight-bold">{{ title }}</h1>
                     </div>
@@ -15,8 +15,12 @@
                     {% include 'core/fields/input_field.html' with field=form.name|add_class:"input"|attr:"placeholder:Brand name" %}
                     {% include 'core/fields/select_field.html' with field=form.store %}
                     <div class="buttons">
-                        <button class="button is-primary" type="submit">Create brand</button>
+                        <button class="button is-primary" type="submit">{{ button }} brand</button>
+                        {% if object %}
+                        <a href="{% url 'brand-list' %}" class="button">Cancel</a>
+                        {% else %}
                         <a href="{% url 'index' %}" class="button">Cancel</a>
+                        {% endif %}
                     </div>
                 </form>
             </div>

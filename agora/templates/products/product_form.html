@@ -20,11 +20,10 @@
                     {% include 'core/fields/input_field.html' with field=form.notes|add_class:"textarea"|attr:"rows:2" %}
                     {% include 'core/fields/input_field.html' with field=form.tags|add_class:"input" %}
                     <div class="buttons">
-                        {% if object %}
                         <button class="button is-primary" type="submit">{{ button }}</button>
+                        {% if object %}
                         <a href="{% url 'product-list' %}" class="button">Cancel</a>
                         {% else %}
-                        <button class="button is-primary" type="submit">{{ button }}</button>
                         <a href="{% url 'index' %}" class="button">Cancel</a>
                         {% endif %}
                     </div>

@@ -19,7 +19,7 @@
                         <td>{{ brand.name }}</td>
                         <td>{{ brand.store }}</td>
                         <td class="has-text-centered">
-                            <a href="#">
+                            <a href="{% url 'brand-update' brand.pk %}">
                                 <span class="icon-text">
                                     <span class="icon">
                                         <i class="fas fa-edit" aria-hidden="true" title="Update brand"></i>
