@@ -1,3 +1,4 @@
+from ast import Delete
 from audioop import reverse
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
@@ -80,7 +81,7 @@ class BrandCreateView(SuccessMessageMixin, CreateView):
 
 
 class BrandUpdateView(SuccessMessageMixin, UpdateView):
-    """A view for updatinng brands."""
+    """A view for updating brands."""
 
     model = Brand
     form_class = BrandForm
@@ -88,3 +89,13 @@ class BrandUpdateView(SuccessMessageMixin, UpdateView):
     success_message = '%(name)s successfully updated.'
     template_name = 'products/brand_form.html'
     extra_context = {'title': 'Update Brand', 'button': 'Update'}
+
+
+class BrandDeleteView(SuccessMessageMixin, DeleteView):
+    """A view for deleting brands."""
+
+    model = Brand
+    success_url = reverse_lazy('brand-list')
+    success_message = 'Brand successfully deleted.'
+    template_name = 'products/brand_confirm_delete.html'
+    extra_context = {'title': 'Delete Brand'}

@@ -26,4 +26,7 @@ urlpatterns = [
     path('<int:pk>/edit',
          views.BrandUpdateView.as_view(),
          name='brand-update'),
+    path('<int:pk>/delete',
+         views.BrandDeleteView.as_view(),
+         name='brand-delete')
 ]
