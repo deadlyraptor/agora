@@ -27,8 +27,8 @@ class Product(TimeStampedModel, models.Model):
     )
     weight = QuantityField('ounce',
                            validators=[MinValueValidator(0)])
-    store = models.ForeignKey(
-        Store,
+    brand = models.ForeignKey(
+        'ProductBrand',
         on_delete=models.CASCADE,
         related_name='products'
     )
