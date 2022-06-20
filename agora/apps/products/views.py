@@ -15,7 +15,7 @@ class ProductListView(ListView):
 
     model = Product
     context_object_name = 'products'
-    paginate_by = 25
+    paginate_by = 15
     template_name = 'products/product_list.html'
     extra_context = {'title': 'Products'}
 
