@@ -22,7 +22,7 @@
                             <span class="tag is-info is-light is-medium">{{ tag }}</span>
                             {% endfor %}
                         </div>
-                        <p class="is-italic">Last purchased on {{ product.modified|date:"n/j" }}</p>
+                        <p class="is-italic">Last purchased on {{ product.purchase_date|date:"n/j" }}</p>
                     </div>
                     <div class="card-footer">
                         <div class="card-footer-item">
