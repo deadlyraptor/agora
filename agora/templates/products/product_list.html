@@ -58,6 +58,14 @@
                         </th>
                         <th>
                             <span class="icon-text is-clickable">
+                                <span>Tags</span>
+                                <span class="icon">
+                                    <i class="fas fa-sort"></i>
+                                </span>
+                            </span>
+                        </th>
+                        <th>
+                            <span class="icon-text is-clickable">
                                 <span>Brand</span>
                                 <span class="icon">
                                     <i class="fas fa-sort"></i>
@@ -86,6 +94,11 @@
                         <td class="has-text-right">{{ product.weight.magnitude }} oz.</td>
                         <td class="has-text-right">${{ product.price_per_oz }}</td>
                         <td>{{ product.modified|date:"n/j" }}</td>
+                        <td>
+                            {% for tag in product.tags.all %}
+                            {{ tag.name|capfirst }}
+                            {% endfor %}
+                        </td>
                         <td>{{ product.brand.name }}</td>
                         <td>{{ product.brand.store }}</td>
                         <td class="has-text-centered">
