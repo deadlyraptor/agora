@@ -1,4 +1,5 @@
 from agora.settings.base import *  # noqa
+import dj_database_url
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -15,6 +16,9 @@ MIDDLEWARE += [  # noqa
 ]
 
 INTERNAL_IPS = ['127.0.0.1']
+
+# DATABASES['default'] = dj_database_url.config(
+#     default=os.getenv('DATABASE_URL'))
 
 try:
     from .local import *  # noqa

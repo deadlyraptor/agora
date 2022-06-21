@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView,
                                   ListView, UpdateView)
 
-from taggit.models import Tag
+from taggit.models import Tag, TaggedItem
 
 from agora.apps.products.forms import ProductForm, BrandForm
 from agora.apps.products.models import Product, Brand
@@ -137,6 +137,20 @@ class TagListView(ListView):
 
     def get_queryset(self):
         return Tag.objects.all().order_by('name')
+
+
+class TagDetailView(DetailView):
+    """A view for inspecting a specific tag."""
+
+    model = Tag
+    context_object_name = 'tag'
+    template_name = 'products/tag_detail.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs.update({'title': self.object.name.capitalize})
+        kwargs.update({'products': TaggedItem.objects.filter(
+            tag=self.object)})
+        return super().get_context_data(**kwargs)
 
 
 class TagDeleteView(SuccessMessageMixin, DeleteView):

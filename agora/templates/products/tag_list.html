@@ -16,7 +16,11 @@
                 <tbody>
                     {% for tag in tags %}
                     <tr>
-                        <td>{{ tag.name|capfirst }}</td>
+                        <td>
+                            <a href="{% url 'tag-detail' tag.slug %}">
+                                {{ tag.name|capfirst }}
+                            </a>
+                        </td>
                         <td>{{ tag.taggit_taggeditem_items.count }}</td>
                         <td class="has-text-centered">
                             <a href="{% url 'tag-delete' tag.slug %}">
