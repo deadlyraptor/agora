@@ -24,10 +24,13 @@ DJANGO_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
 ]
 
 THIRD_PARTY_APPS = [
+    'allauth',
+    'allauth.account',
     'django_extensions',
     'fontawesomefree',
     'taggit',
@@ -56,6 +59,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'agora.urls'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 TEMPLATES = [
     {
@@ -146,6 +154,15 @@ AUTH_USER_MODEL = 'users.User'
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+# Allauth
+SITE_ID = 1
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+
 
 # Taggit
 TAGGIT_CASE_INSENSITIVE = True
