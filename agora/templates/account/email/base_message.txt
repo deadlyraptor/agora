@@ -1,0 +1,6 @@
+{% autoescape off %}
+Hello,{% block content %}
+{% endblock %}
+---------------
+{{ current_site.name }}
+{% endautoescape %}

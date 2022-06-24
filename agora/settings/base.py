@@ -162,6 +162,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_FORMS = {'signup': 'agora.apps.users.forms.SignupForm'}
 
 
 # Taggit
