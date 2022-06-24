@@ -8,4 +8,4 @@ class StoreForm(forms.ModelForm):
 
     class Meta:
         model = Store
-        exclude = ('created', 'modified')
+        exclude = ('created', 'modified', 'user')

@@ -9,8 +9,8 @@ class Store(TimeStampedModel, models.Model):
     """A model for grocery stores."""
 
     name = models.CharField(max_length=150)
-    website = models.URLField()
-    directions = models.URLField()
+    website = models.URLField(blank=True)
+    directions = models.URLField(blank=True)
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE,
                              related_name='stores')

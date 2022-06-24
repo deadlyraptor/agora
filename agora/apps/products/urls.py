@@ -29,10 +29,10 @@ urlpatterns = [
     path('brand/<int:pk>/',
          views.BrandDetailView.as_view(),
          name='brand-detail'),
-    path('<int:pk>/edit/',
+    path('brand/<int:pk>/edit/',
          views.BrandUpdateView.as_view(),
          name='brand-update'),
-    path('<int:pk>/delete/',
+    path('brand/<int:pk>/delete/',
          views.BrandDeleteView.as_view(),
          name='brand-delete'),
     # Tags

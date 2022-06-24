@@ -29,6 +29,12 @@ class StoreCreateView(SuccessMessageMixin, CreateView):
     template_name = 'stores/store_form.html'
     extra_context = {'title': 'Create Store', 'button': 'Create'}
 
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return super().form_valid(form)
+
 
 class StoreDetailView(DetailView):
     """A view for inspecting a specific store."""
