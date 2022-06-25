@@ -12,6 +12,7 @@
                     {% include 'core/non_field_errors.html' %}
                     {% include 'core/fields/email_field.html' with field=form.login|add_class:"input"|attr:"placeholder:Email address" %}
                     {% include 'core/fields/password_field.html' with field=form.password|add_class:"input"|attr:"placeholder:Password" %}
+                    {% include 'core/fields/checkbox_field.html' with field=form.remember %}
                     {% if redirect_field_value %}
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}

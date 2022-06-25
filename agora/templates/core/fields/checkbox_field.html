@@ -1,0 +1,14 @@
+<div class="field">
+    <div class="control">
+        <label for="{{ field.id_for_label }}" class="checkbox">
+            {{ field }}
+            {{ field.label }}
+        </label>
+    </div>
+    {% if field.errors %}
+    {% include 'core/field_errors.html' %}
+    {% endif %}
+    {% if field.help_text %}
+    {% include 'core/field_help_text.html' %}
+    {% endif %}
+</div>
