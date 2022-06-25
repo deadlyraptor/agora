@@ -155,6 +155,8 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
+LOGIN_REDIRECT_URL = 'index'
+
 # Allauth
 SITE_ID = 1
 ACCOUNT_AUTHENTICATION_METHOD = 'email'

@@ -6,6 +6,7 @@ from django.views.generic import (CreateView, DeleteView, DetailView,
 from taggit.models import Tag, TaggedItem
 
 from agora.apps.products.forms import ProductForm, BrandForm
+from agora.apps.products.mixins import UserSingleBrandMixin
 from agora.apps.products.models import Product, Brand
 
 # Products
@@ -79,7 +80,7 @@ class BrandListView(ListView):
     extra_context = {'title': 'Brands'}
 
     def get_queryset(self):
-        return Brand.objects.all()
+        return Brand.objects.filter(store__user__pk=self.request.user.pk)
 
 
 class BrandCreateView(SuccessMessageMixin, CreateView):
@@ -92,8 +93,13 @@ class BrandCreateView(SuccessMessageMixin, CreateView):
     template_name = 'products/brand_form.html'
     extra_context = {'title': 'Create Brand', 'button': 'Create'}
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
-class BrandDetailView(DetailView):
+
+class BrandDetailView(UserSingleBrandMixin, DetailView):
     """A view for inspecting a specific brand."""
 
     model = Brand
@@ -105,7 +111,7 @@ class BrandDetailView(DetailView):
         return super().get_context_data(**kwargs)
 
 
-class BrandUpdateView(SuccessMessageMixin, UpdateView):
+class BrandUpdateView(SuccessMessageMixin, UserSingleBrandMixin, UpdateView):
     """A view for updating brands."""
 
     model = Brand
@@ -113,17 +119,29 @@ class BrandUpdateView(SuccessMessageMixin, UpdateView):
     success_url = reverse_lazy('brand-list')
     success_message = '%(name)s successfully updated.'
     template_name = 'products/brand_form.html'
-    extra_context = {'title': 'Update Brand', 'button': 'Update'}
+    extra_context = {'button': 'Update'}
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        kwargs.update({'title': f'Update {self.object.name}'})
+        return super().get_context_data(**kwargs)
 
 
-class BrandDeleteView(SuccessMessageMixin, DeleteView):
+class BrandDeleteView(SuccessMessageMixin, UserSingleBrandMixin, DeleteView):
     """A view for deleting brands."""
 
     model = Brand
     success_url = reverse_lazy('brand-list')
     success_message = 'Brand successfully deleted.'
     template_name = 'products/brand_confirm_delete.html'
-    extra_context = {'title': 'Delete Brand'}
+
+    def get_context_data(self, **kwargs):
+        kwargs.update({'title': f'Delete {self.object.name}'})
+        return super().get_context_data(**kwargs)
 
 
 class TagListView(ListView):
