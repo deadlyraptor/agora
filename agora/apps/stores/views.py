@@ -4,10 +4,12 @@ from django.views.generic import (CreateView, DeleteView, DetailView,
                                   ListView, UpdateView)
 
 from agora.apps.stores.forms import StoreForm
+from agora.apps.stores.mixins import (UserSingleStoreMixin,
+                                      UserMultipleStoreMixin)
 from agora.apps.stores.models import Store
 
 
-class StoreListView(ListView):
+class StoreListView(UserMultipleStoreMixin, ListView):
     """A view for listing all stores."""
 
     model = Store
@@ -15,9 +17,6 @@ class StoreListView(ListView):
     paginate_by = 25
     template_name = 'stores/store_list.html'
     extra_context = {'title': 'Stores'}
-
-    def get_queryset(self):
-        return Store.objects.all()
 
 
 class StoreCreateView(SuccessMessageMixin, CreateView):
@@ -36,7 +35,7 @@ class StoreCreateView(SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
-class StoreDetailView(DetailView):
+class StoreDetailView(UserSingleStoreMixin, DetailView):
     """A view for inspecting a specific store."""
 
     model = Store
@@ -48,7 +47,7 @@ class StoreDetailView(DetailView):
         return super().get_context_data(**kwargs)
 
 
-class StoreUpdateView(SuccessMessageMixin, UpdateView):
+class StoreUpdateView(SuccessMessageMixin, UserSingleStoreMixin, UpdateView):
     """A view for updating stores."""
 
     model = Store
@@ -56,14 +55,21 @@ class StoreUpdateView(SuccessMessageMixin, UpdateView):
     success_url = reverse_lazy('store-list')
     success_message = '%(name)s successfully updated.'
     template_name = 'stores/store_form.html'
-    extra_context = {'title': 'Update Store', 'button': 'Update'}
+    extra_context = {'button': 'Update'}
+
+    def get_context_data(self, **kwargs):
+        kwargs.update({'title': f'Update {self.object.name}'})
+        return super().get_context_data(**kwargs)
 
 
-class StoreDeleteView(SuccessMessageMixin, DeleteView):
+class StoreDeleteView(SuccessMessageMixin, UserSingleStoreMixin, DeleteView):
     """A view for deleting stores."""
 
     model = Store
     success_url = reverse_lazy('store-list')
     success_message = 'Store successfully deleted.'
     template_name = 'stores/store_confirm_delete.html'
-    extra_context = {'title': 'Delete Store'}
+
+    def get_context_data(self, **kwargs):
+        kwargs.update({'title': f'Delete {self.object.name}'})
+        return super().get_context_data(**kwargs)
