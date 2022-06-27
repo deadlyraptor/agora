@@ -4,8 +4,8 @@ from django.views.generic import (CreateView, DeleteView, DetailView,
                                   ListView, UpdateView)
 
 from agora.apps.stores.forms import StoreForm
-from agora.apps.stores.mixins import (UserSingleStoreMixin,
-                                      UserMultipleStoreMixin)
+from agora.apps.stores.mixins import (UserMultipleStoreMixin,
+                                      UserSingleStoreMixin)
 from agora.apps.stores.models import Store
 
 

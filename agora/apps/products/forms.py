@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django import forms
 
-from agora.apps.products.models import Product, Brand
+from agora.apps.products.models import Brand, Product
 from agora.apps.stores.models import Store
 
 

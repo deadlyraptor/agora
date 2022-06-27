@@ -4,9 +4,9 @@ from django.urls import reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView,
                                   ListView, UpdateView)
 
-from agora.apps.products.forms import ProductForm, BrandForm
+from agora.apps.products.forms import BrandForm, ProductForm
 from agora.apps.products.mixins import UserSingleBrandMixin
-from agora.apps.products.models import Product, Brand
+from agora.apps.products.models import Brand, Product
 
 # Products
 
