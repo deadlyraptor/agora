@@ -194,7 +194,8 @@ class TagListView(ListView):
     extra_context = {'title': 'Tags'}
 
     def get_queryset(self):
-        return Tag.objects.all().order_by('name')
+        return Tag.objects.filter(
+            product__brand__store__user=self.request.user).order_by('name')
 
 
 class TagDetailView(DetailView):
