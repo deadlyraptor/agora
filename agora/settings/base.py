@@ -41,6 +41,7 @@ LOCAL_APPS = [
     'agora.apps.core',
     'agora.apps.products',
     'agora.apps.stores',
+    'agora.apps.tags',
     'agora.apps.users',
 ]
 
