@@ -17,6 +17,10 @@ class ProductForm(forms.ModelForm):
                 'max': datetime.today().strftime('%Y-%m-%d')})
         }
 
+    def __init__(self, user, *args, **kwargs):
+        super(ProductForm, self).__init__(*args, **kwargs)
+        self.fields['brand'].queryset = Brand.objects.filter(store__user=user)
+
 
 class BrandForm(forms.ModelForm):
     """A form for creating and updating product brands."""

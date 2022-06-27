@@ -1,4 +1,5 @@
 from django.contrib.messages.views import SuccessMessageMixin
+from django.http import Http404
 from django.urls import reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView,
                                   ListView, UpdateView)
@@ -22,7 +23,7 @@ class ProductListView(ListView):
     extra_context = {'title': 'Products'}
 
     def get_queryset(self):
-        return Product.objects.all()
+        return Product.objects.filter(brand__store__user=self.request.user)
 
 
 class ProductCreateView(SuccessMessageMixin, CreateView):
@@ -34,6 +35,11 @@ class ProductCreateView(SuccessMessageMixin, CreateView):
     success_message = '%(name)s (%(brand)s) successfully created.'
     template_name = 'products/product_form.html'
     extra_context = {'title': 'Create Product', 'button': 'Create'}
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
 
 class ProductDetailView(DetailView):
@@ -47,6 +53,13 @@ class ProductDetailView(DetailView):
         kwargs.update({'title': self.object.name})
         return super().get_context_data(**kwargs)
 
+    def get_object(self):
+        try:
+            return Product.objects.get(pk=self.kwargs['pk'],
+                                       brand__store__user=self.request.user)
+        except Product.DoesNotExist:
+            raise Http404('This product does not exist.')
+
 
 class ProductUpdateView(SuccessMessageMixin, UpdateView):
     """A view for updating Products."""
@@ -56,7 +69,23 @@ class ProductUpdateView(SuccessMessageMixin, UpdateView):
     success_url = reverse_lazy('product-list')
     success_message = '%(name)s successfully updated.'
     template_name = 'products/product_form.html'
-    extra_context = {'title': 'Update Product', 'button': 'Update'}
+    extra_context = {'button': 'Update'}
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        kwargs.update({'title': f'Update {self.object.name}'})
+        return super().get_context_data(**kwargs)
+
+    def get_object(self):
+        try:
+            return Product.objects.get(pk=self.kwargs['pk'],
+                                       brand__store__user=self.request.user)
+        except Product.DoesNotExist:
+            raise Http404('This product does not exist.')
 
 
 class ProductDeleteView(SuccessMessageMixin, DeleteView):
@@ -66,10 +95,21 @@ class ProductDeleteView(SuccessMessageMixin, DeleteView):
     success_url = reverse_lazy('product-list')
     success_message = 'Product successfully deleted.'
     template_name = 'products/product_confirm_delete.html'
-    extra_context = {'title': 'Delete Product'}
 
+    def get_context_data(self, **kwargs):
+        kwargs.update({'title': f'Delete {self.object.name}'})
+        return super().get_context_data(**kwargs)
+
+    def get_object(self):
+        try:
+            return Product.objects.get(pk=self.kwargs['pk'],
+                                       brand__store__user=self.request.user)
+        except Product.DoesNotExist:
+            raise Http404('This product does not exist.')
 
 # Brands
+
+
 class BrandListView(ListView):
     """A view for listing all brands."""
 
