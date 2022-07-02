@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static account %}
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <div class="content">
+            {% if confirmation %}
+            <h1 class="title has-text-weight-bold">{{ title }}</h1>
+            {% user_display confirmation.email_address.user as user_display %}
+            <p>{% with confirmation.email_address.email as email %}
+                Please confirm <a class="has-text-weight-bold" href="mailto:{{ email }}">{{ email }}</a> as
+                your email address.{% endwith %}
+            </p>
+
+            <form action="{% url 'account_confirm_email' confirmation.key %}" method="POST">
+                {% csrf_token %}
+                <button class="button is-primary" type="submit">Confirm</button>
+            </form>
+
+            {% else %}
+            <h1 class="title has-text-weight-bold">Expired Or Inavlid Link</h1>
+            <p>This email confirmation link expired or is invalid. Please <a class="has-text-weight-bold"
+                    href="{% url 'account_email' %}">request a new email confirmation link</a>.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

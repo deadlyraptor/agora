@@ -18,6 +18,7 @@
                     {% include 'core/fields/input_field.html' with field=form.weight %}
                     {% include 'core/fields/select_field.html' with field=form.brand %}
                     {% include 'core/fields/input_field.html' with field=form.notes|add_class:"textarea"|attr:"rows:2" %}
+                    {% include 'core/fields/input_field.html' with field=form.purchase_date|attr:"type:date"|add_class:"input" %}
                     {% include 'core/fields/input_field.html' with field=form.tags|add_class:"input" %}
                     <div class="buttons">
                         <button class="button is-primary" type="submit">{{ button }}</button>

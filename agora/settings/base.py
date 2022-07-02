@@ -24,10 +24,13 @@ DJANGO_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
 ]
 
 THIRD_PARTY_APPS = [
+    'allauth',
+    'allauth.account',
     'django_extensions',
     'fontawesomefree',
     'taggit',
@@ -35,9 +38,11 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    'agora.apps.cart',
     'agora.apps.core',
     'agora.apps.products',
     'agora.apps.stores',
+    'agora.apps.tags',
     'agora.apps.users',
 ]
 
@@ -56,6 +61,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'agora.urls'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 TEMPLATES = [
     {
@@ -139,10 +149,25 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Custom User model
+AUTH_USER_MODEL = 'users.User'
+
 # Messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+LOGIN_REDIRECT_URL = 'index'
+
+# Allauth
+SITE_ID = 1
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_FORMS = {'signup': 'agora.apps.users.forms.SignupForm'}
+
 
 # Taggit
 TAGGIT_CASE_INSENSITIVE = True

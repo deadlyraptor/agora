@@ -5,54 +5,55 @@
     <div class="container">
         <div class="columns is-centered">
             <div class="column is-two-fifths">
-                <div class="content">
-                    <div class="card">
-                        <div class="card-content">
-                            <h1 class="title">{{ product.name }} - {{ product.weight.magnitude }} oz.</h1>
-                            <h2 class="subtitle">{{ product.brand }}</h2>
-                            <h3 class="is-size-5">{{product.brand.store }}</h3>
-                            {% if product.promo_price %}
-                            <p>
-                                <span class="has-text-primary is-size-4">${{ product.promo_price }}</span> (${{ product.price_per_oz }}/oz.)
-                            </p>
-                            <p>${{ product.price }} (original price)</p>
+                <div class="card">
+                    <div class="card-content">
+                        <h1 class="title">{{ product.name }}</h1>
+                        {% if product.promo_price %}
+                        <p>
+                            <span class="has-text-primary is-size-4">${{ product.promo_price }}</span>
                             {% else %}
-                            <p>${{ product.price }} ({{ product.price_per_oz }}/oz.)</p>
+                            <span class="is-size-4">${{ product.price }}</span>
                             {% endif %}
-                            <div class="tags">
-                                {% for tag in product.tags.names %}
-                                <span class="tag is-primary is-light is-medium">{{ tag }}</span>
-                                {% endfor %}
-                            </div>
-                            <p class="is-italic">Last purchased on {{ product.modified|date:"n/j" }}</p>
+                        </p>
+                        <span>{{ product.weight.magnitude|floatformat:"-2" }} oz. | ${{ product.price_per_oz }}/oz.</span>
+                        <p>{{ product.brand }} - {{ product.brand.store }}</p>
+                        <div class="tags mt-4">
+                            {% for tag in product.tags.names %}
+                            <span class="tag is-info is-light is-medium">{{ tag }}</span>
+                            {% endfor %}
                         </div>
-                        <div class="card-footer">
-                            <div class="card-footer-item">
-                                <a href="{% url 'product-update' product.pk %}">Update</a>
-                            </div>
-                            <div class="card-footer-item">
-                                <a href="{% url 'product-delete' product.pk %}">Delete</a>
-                            </div>
+                        <p class="is-italic">Last purchased on {{ product.purchase_date|date:"n/j" }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-footer-item">
+                            <a href="{% url 'product-update' product.pk %}">Update</a>
+                        </div>
+                        <div class="card-footer-item">
+                            <a href="{% url 'product-delete' product.pk %}">Delete</a>
                         </div>
                     </div>
                 </div>
                 {% if product.tags.similar_objects %}
-                <h2 class="is-size-4">Related Products</h2>
+                <h2 class="is-size-4 mb-4">Related Products</h2>
                 <div class="columns is-multiline">
                     {% for related_product in product.tags.similar_objects %}
                     <div class="column">
                         <div class="card">
                             <div class="card-content">
-                                <h2><a href="{% url 'product-detail' related_product.pk %}">{{ related_product.name }}</a></h2>
-                                <h3>{{ related_product.brand.store }}</h3>
+                                <h2>
+                                    <a href="{% url 'product-detail' related_product.pk %}">
+                                        {{ related_product.name }}
+                                    </a>
+                                </h2>
                                 {% if related_product.promo_price %}
                                 <p>
-                                    <span class="has-text-primary is-size-4">${{ related_product.promo_price }}</span> (${{ related_product.price_per_oz }}/oz.)
+                                    <span class="has-text-primary">${{ related_product.promo_price }}</span>
+                                    (${{ related_product.price_per_oz }}/oz.)
                                 </p>
-                                <p>${{ related_product.price }} (original price)</p>
                                 {% else %}
                                 <p>${{ related_product.price }} ({{ related_product.price_per_oz}}/oz.)</p>
                                 {% endif %}
+                                <p>{{ related_product.brand.store }}</p>
                             </div>
                         </div>
                     </div>

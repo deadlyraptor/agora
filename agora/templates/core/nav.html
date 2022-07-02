@@ -10,18 +10,12 @@
         </div>
         <div id="navbarMain" class="navbar-menu">
             <div class="navbar-start">
+                {% if user.is_authenticated %}
                 <div class="navbar-item has-dropdown is-hoverable">
                     <div class="navbar-link">Stores</div>
                     <div class="navbar-dropdown">
                         <a class="navbar-item" href="{% url 'store-list' %}">List</a>
                         <a class="navbar-item" href="{% url 'store-create' %}">Create</a>
-                    </div>
-                </div>
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <div class="navbar-link">Products</div>
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item" href="{% url 'product-list' %}">List</a>
-                        <a class="navbar-item" href="{% url 'product-create' %}">Create</a>
                     </div>
                 </div>
                 <div class="navbar-item has-dropdown is-hoverable">
@@ -32,11 +26,56 @@
                     </div>
                 </div>
                 <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Products</div>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="{% url 'product-list' %}">List</a>
+                        <a class="navbar-item" href="{% url 'product-create' %}">Create</a>
+                    </div>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
                     <div class="navbar-link">Tags</div>
                     <div class="navbar-dropdown">
                         <a class="navbar-item" href="{% url 'tag-list' %}">List</a>
                     </div>
                 </div>
+                {% else %}
+                <a href="#" class="navbar-item">Stores</a>
+                <a href="#" class="navbar-item">Brands</a>
+                <a href="#" class="navbar-item">Products</a>
+                <a href="#" class="navbar-item">Tags</a>
+                {% endif %}
+            </div>
+            <div class="navbar-end">
+                {% if user.is_authenticated %}
+                <a class="navbar-item" href="{% url 'cart' %}">
+                    <span class="icon-text is-block">
+                        <span class="icon-is small">
+                            <i class="fas fa-list" aria-hidden="true"></i>
+                        </span>
+                        <span>Shopping List</span>
+                    </span>
+                </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">{{ user.get_username }}</div>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="{% url 'account_logout' %}">
+                            <span class="icon-text is-block">
+                                <span class="icon is-small">
+                                    <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i>
+                                </span>
+                                <span>Logout</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                {% else %}
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary" href="{% url 'account_signup' %}">Sign Up</a>
+                        <a class="button is-light" href="{% url 'account_login' %}">Log In</a>
+                    </div>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>

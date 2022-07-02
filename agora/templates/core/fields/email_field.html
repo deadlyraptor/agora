@@ -1,0 +1,15 @@
+<div class="field">
+    <label class="label" for="{{ field.id_for_label }}">Email</label>
+    <div class="control has-icons-left">
+        {{ field }}
+        <span class="icon is-left">
+            <i class="fas fa-envelope" aria-hidden="true" title="Email"></i>
+        </span>
+    </div>
+    {% if field.errors %}
+    {% include 'core/field_errors.html' %}
+    {% endif %}
+    {% if field.help_text %}
+    {% include 'core/field_help_text.html' %}
+    {% endif %}
+</div>

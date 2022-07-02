@@ -1,0 +1,11 @@
+{% extends "account/email/base_message.txt" %}
+{% load account %}
+{% block content %}
+{% autoescape off %}
+Thank you for signing up for {{ current_site.name }}!
+
+To finish registration and confirm your account, please click the link below:
+
+{{ activate_url }}
+{% endautoescape %}
+{% endblock content %}

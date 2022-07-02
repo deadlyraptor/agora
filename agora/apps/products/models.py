@@ -36,6 +36,7 @@ class Product(TimeStampedModel, models.Model):
     )
     notes = models.TextField(blank=True)
     tags = TaggableManager()
+    purchase_date = models.DateField()
 
     class Meta:
         ordering = ['name']
