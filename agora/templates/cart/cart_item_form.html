@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-narrow">
+                <form class="box" action="" method="POST">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button class="button is-primary" type="submit">Add to list</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

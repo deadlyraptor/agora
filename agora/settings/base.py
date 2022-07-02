@@ -38,6 +38,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    'agora.apps.cart',
     'agora.apps.core',
     'agora.apps.products',
     'agora.apps.stores',

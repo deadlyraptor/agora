@@ -118,6 +118,14 @@
                                     </span>
                                 </span>
                             </a>
+                            <a href="{% url 'add-to-list' product.pk %}">
+                                <span class="icon-text">
+                                    <span class="icon has-text-primary">
+                                        <i class="fas fa-cart-plus" aria-hidden="true" title="Add to shopping list"></i>
+                                        <span class="is-sr-only">Add to shopping list</span>
+                                    </span>
+                                </span>
+                            </a>
                         </td>
                     </tr>
                     {% endfor %}
