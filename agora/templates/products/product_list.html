@@ -93,7 +93,7 @@
                         <td class="has-text-right">${{ product.promo_price }}</td>
                         <td class="has-text-right">{{ product.weight.magnitude }} oz.</td>
                         <td class="has-text-right">${{ product.price_per_oz }}</td>
-                        <td>{{ product.modified|date:"n/j" }}</td>
+                        <td>{{ product.purchase_date|date:"n/j" }}</td>
                         <td>
                             {% for tag in product.tags.all %}
                             {{ tag.name|capfirst }}
