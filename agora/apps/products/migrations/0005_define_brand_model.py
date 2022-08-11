@@ -12,23 +12,28 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('stores', '0001_define_store_model'),
-        ('products', '0004_define_weight_field'),
+        ('products', '0001_define_product_model'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='product',
             name='weight',
-            field=quantityfield.fields.QuantityField(base_units='ounce', unit_choices=['ounce'], validators=[django.core.validators.MinValueValidator(0)]),
+            field=quantityfield.fields.QuantityField(base_units='ounce', unit_choices=[
+                                                     'ounce'], validators=[django.core.validators.MinValueValidator(0)]),
         ),
         migrations.CreateModel(
             name='ProductBrand',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', model_utils.fields.AutoCreatedField(default=django.utils.timezone.now, editable=False, verbose_name='created')),
-                ('modified', model_utils.fields.AutoLastModifiedField(default=django.utils.timezone.now, editable=False, verbose_name='modified')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('created', model_utils.fields.AutoCreatedField(
+                    default=django.utils.timezone.now, editable=False, verbose_name='created')),
+                ('modified', model_utils.fields.AutoLastModifiedField(
+                    default=django.utils.timezone.now, editable=False, verbose_name='modified')),
                 ('name', models.CharField(max_length=50)),
-                ('store', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='brands', to='stores.store')),
+                ('store', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 related_name='brands', to='stores.store')),
             ],
             options={
                 'ordering': ['name'],
