@@ -1,4 +1,4 @@
-dj-database-url==0.5.0
+dj-database-url==1.0.0
 Django==4.1
 django-allauth==0.51.0
 django-debug-toolbar==3.5.0
