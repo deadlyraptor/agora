@@ -2,6 +2,7 @@
 .env
 .venv
 .vscode
+*.toml
 
 # Python
 *.py[co]
